@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+
+        <style media="screen">
+          .blink {
+            animation: blink 1s steps(2, start) infinite;
+            -webkit-animation: blink 1s steps(2, start) infinite;
+          }
+          @keyframes blink {
+            to {
+              visibility: hidden;
+            }
+          }
+          @-webkit-keyframes blink {
+            to {
+              visibility: hidden;
+            }
+          }
+          .tyc{
+            height: 300px;
+            border-radius: 20px;
+          }
+        </style>
+    </head>
+    <body>
+      <div class="">
+        <div class="row">
+          <div class="col-sm-4">
+
+          </div>
+          <div id="formulario" class="col-sm-4 px-5 pt-3 col-xs-12 overflow-auto sidebar bg-primary text-light" style="height: 100%; position:fixed; z-index: 2; ">
+
+            <h2>Datos</h2>
+            <div class="form-group">
+              <label for=""><i class="fas fa-link"></i> URL <span class="badge badge-info" id="countURL"></span></label>
+              <input type="text" class="form-control" id="url" placeholder="www.ejemplo.cl">
+              <p class="help-block">La dirección de tu tienda online.</p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-building"></i> Nombre de la Empresa <span class="badge badge-info">1 Uso</span></label>
+              <input type="text" class="form-control" id="nombreempresa" placeholder="Mi Empresa SpA">
+              <p class="help-block">Razón social</p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-id-card"></i> RUT de la Empresa <span class="badge badge-info">1 Uso</span></label>
+              <input type="text" class="form-control" id="rut" placeholder="76.543.210-K">
+              <p class="help-block">RUT empresa.</p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-lightbulb"></i> Nombre Tienda <span class="badge badge-info" id="countNick"></span></label>
+              <input type="text" class="form-control" id="nickname" placeholder="Mi Super Tienda">
+              <p class="help-block">Puede tener espacios.</p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-at"></i> Email <span class="badge badge-info" id="countEmail"></span></label>
+              <input type="text" class="form-control" id="email" placeholder="hola@ejemplo.com">
+              <p class="help-block">El email de contacto para tus clientes</p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-phone"></i> Teléfono <span class="badge badge-info">1 Uso</span></label>
+              <input type="text" class="form-control" id="telefono" placeholder="22 555 44 33">
+              <p class="help-block">El teléfono de tu call-center <i>Profesional</i> </p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fab fa-whatsapp"></i> Whatsapp <span class="badge badge-info">1 Uso</span></label>
+              <input type="text" class="form-control" id="whatsapp" placeholder="+569 5125 9641">
+              <p class="help-block"></p>
+            </div>
+            <h2>Links</h2>
+            <div class="form-group">
+              <label for=""><i class="fas fa-lock"></i> Link Políticas de Privacidad <span class="badge badge-info" id="countPriv"></span></label>
+              <input type="text" class="form-control" id="priv" placeholder="https://ejemplo.com/privacidad">
+              <p class="help-block"></p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-shipping-fast"></i> Link Despachos <span class="badge badge-info" id="countEnvios"></span></label>
+              <input type="text" class="form-control" id="envios" placeholder="https://ejemplo.com/despachos">
+              <p class="help-block"></p>
+            </div>
+            <div class="form-group">
+              <label for=""><i class="fas fa-boxes"></i> Link Cambios y Devoluciones <span class="badge badge-info" id="countCambios"></span></label>
+              <input type="text" class="form-control" id="cambios" placeholder="https://ejemplo.com/cambios">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="col-sm-8 col-xs-12 px-5 pt-3 text-justify">
+            <div id="terminosycondiciones" class="tyc overflow-auto p-3 border border-primary" data-spy="scroll" data-target="#formulario" data-offset="0">
+              <div class="p-3">
+
+
+              <div class="text-center">
+                <h2>TÉRMINOS Y CONDICIONES DE USO</h2>
+               <b id="urlEmpresa">[URL]</b>
+              </div>
+
+              <br><br>
+              Entre <b id="nombreEmpresa">[Razón Social]</b> , Rol Único Tributario Nº <b id="rutEmpresa">[RUT]</b>  ("<b class="nickName">[Nombre Tienda]</b> "); y el Usuario que suscribe y acepta el presente instrumento, se ha acordado celebrar el presente acuerdo de uso del sitio web <b id="urlEmpresa">[URL]</b>  (“Acuerdo” o “Acuerdo de Uso”), el que se regirá por los Términos y Condiciones que a continuación se indican. Las transacciones que se efectúen a través de <b id="urlEmpresa">[URL]</b>  se sujetan además a la Legislación chilena vigente, en particular a la Ley 19.496 sobre protección de los Derechos de los Consumidores y la Ley 19.628 sobre Protección d la Vida Privada.  Es requisito para comprar en el sitio la aceptación de los Términos y Condiciones descritos a continuación.
+              <br><br>
+  PRIMERO. Objeto del Acuerdo.El presente Acuerdo tiene por objeto regular los términos y condiciones que rigen el uso del Sitio, así como en general las relaciones, derechos y obligaciones que se generarán entre los intervinientes en el sitio.
+              <br><br>
+              SEGUNDO. Declaraciones.El Usuario declara, conoce y acepta:
+              <br>
+              <br>
+              <ul class="list-inline">
+              <li>1.	Que es mayor de edad.</li>
+              <li>2.	Que conoce la naturaleza tecnológica del Sitio y de su contenido y que, por tanto, está natural e inherentemente expuesto a interrupciones y/o a indisponibilidades, que no necesariamente están bajo el control y responsabilidad de <b class="nickName"></b> .</li>
+              <li>3.	Que, dada la naturaleza antes mencionada, <b class="nickName"></b>  puede, de tiempo en tiempo, voluntariamente afectar la disponibilidad de la Plataforma, especialmente pero no limitado a, para efectuar mantenciones, tanto preventivas, como correctivas, para actualizar su contenido, para resguardad la seguridad e integridad del Sitio o por causas o fines similares.</li>
+              <li>4.	Que el Sitio utiliza cookies de origen, propias y de terceros, de carácter temporal y permanentes, las que se utilizan para almacenar información de identificación no personal de los Usuarios. La aceptación del presente Acuerdo constituirá aceptación inequívoca del Usuario para la utilización de El Usuario deberá consultar las instrucciones de su navegador, especialmente en lo relativo a configuraciones, donde se permite escoger la funcionalidad que comunica la existencia de cookies y/o impide la instalación de cookies. Sin el acceso de cookies el Usuario no podrá no tener acceso a determinadas funcionalidades con las que cuenta el Sitio. En consecuencia, si el usuario no tiene habilitadas las cookies, puede no tener acceso a ciertas herramientas del Sitio o puede ver afectado un correcto funcionamiento.</li>
+              <li>5.	Que es de su responsabilidad contar con sistemas de antivirus, firewall y/u otros análogos, los cuales deberán estar permanentemente actualizados.</li>
+              </ul>
+              <br>
+              <br>
+              TERCERO. Formación del consentimiento y modificaciones.Tratándose de las compras realizadas a través del Sitio y del presente Acuerdo, el consentimiento se formará al momento de que el Usuario acepte inequívocamente la compra. 
+              <br>
+              <br>
+              CUARTO. Obligaciones.El Usuario se obliga a:
+
+              <ul>
+              <li>1.	A que toda la información que proporcione a <b class="nickName"></b> , personal, o de cualquier naturaleza, por cualquier medio, sea veraz, fidedigna y comprobable.
+              </li>
+              <li>2.	A mantener su información personal siempre actualizada, especialmente la dirección de despacho de productos.
+              </li>
+              <li>3.	A conocer y aceptar las <b id="linkPrivacidad"></b>
+              </li>
+              <li>4.	A usar el Sitio, así como su contenido, sólo con propósitos que caen dentro del marco legal y regulatorio.
+              </li>
+              <li>5.	A no distribuir desde el Sitio información, mensajes, posts o contenidos que pudieren ser de carácter fraudulento, engañoso (incluyendo publicidad engañosa de otros productos o servicios ajenos a <b class="nickName"></b> ), discriminatorio, violento, amenazante, de acoso, difamatorio, denigratorio, y en general, que pudiere dañar a terceros y/o a <b class="nickName"></b> . En caso de incumplimiento de esta obligación, <b class="nickName"></b>  quedará facultado para eliminar del Sitio dicha información, mensajes, posts o contenidos.
+              </li>
+              <li>6.	A no distribuir desde el Sitio sin la previa autorización del titular, información o contenidos que se encuentren protegidos por las leyes de propiedad intelectual o derecho de autor.
+              </li>
+              </ul>
+              <br>
+              <br>
+              QUINTO. Compra de productos en el Sitio.Las compras sólo podrán ser realizadas por usuarios mayores de 18 años y despachadas dentro del territorio de la República de Chile.
+              <br>
+              <br>
+              SEXTO. Proceso de compra.En el caso que un Usuario desee adquirir un producto deberá agregarlo al “carrito de compra”. Al acceder al “carrito de compra” se desplegará la información detallada de la operación, donde deberá seguirse el siguiente procedimiento para concretar la compra:
+
+              <br>
+              <br>
+              <ul>
+                <li>1.	Ingresar su correo electrónico y sus datos personales solicitados, para luego proceder a la información específica del despacho.
+                </li>
+                <li>2.	Seleccionar la forma de envío o retiro preferida entre las alternativas ofrecidas: Envío a Domicilio, Retiro en nuestras tiendas o retiro en sucursal Chilexpress.
+                </li>
+                <li>3.	Al pulsar el botón “Finalizar el pedido”, el usuario será redirigido al sitio del medio de pago seleccionado, que se regirá por sus propios términos y condiciones, los que deberán ser aceptados.
+                </li>
+                <li>4.	Una vez realizado el pago, <b class="nickName"></b>  enviará un correo electrónico con la confirmación de la compra, el que contendrá los detalles de la compra, el número de orden y la dirección de despacho.
+                </li>
+                <li>5.	Con posterioridad, <b class="nickName"></b>  enviará información adicional por correo electrónico, respecto al estatus de su pedido, en cuanto al armado y despacho de este, para efectos de un óptimo seguimiento.
+                Se deja constancia que el valor de entrega o envío, será de cargo del comprador y dependerá de la forma de entrega o envío que se seleccione, lo que será siempre informado en forma previa a la finalización de la compra. Los perfumes y sprays sólo podrán ser despachados dentro de la Región Metropolitana.
+                En caso de que el precio de un producto, por un error involuntario de <b class="nickName"></b> , sea publicado a un precio inferior o superior al real valor de este, la empresa se pondrá en contacto con los usuarios para resolver la situación de la manera más apropiada y a la brevedad.
+                </li>
+              </ul>
+              <br>
+              <br>
+              SÉPTIMO. Reglas para el despacho de productos.
+              <br>
+              <br>
+              <ul>
+                <li>1.	Es responsabilidad del comprador proveer una dirección en la que haya gente para recibir paquetes en el horario de entrega.
+                </li>
+                <li>2.	<b class="nickName"></b>  enviará un mail confirmando el despacho el mismo día en que se realice éste, con información del courier por el que ha sido enviado.
+                </li>
+                <li>3.	Los retrasos provocados por ausencia del comprador o de un tercero habilitado para recibir la compra al momento de la entrega; por dirección incorrecta o incompleta; por negativa del usuario a aceptar el envío y el cambio de domicilio, serán de responsabilidad del comprador.
+                </li>
+                <li>4.	No es posible agendar un horario específico de entrega.
+                </li>
+                <li>5.	Despachos normales: Las compras con confirmación de pago antes de las 14:30 horas de lunes a viernes, tienen un plazo de entrega de máximo 5 días hábiles dentro de la Región Metropolitana, y 5 días hábiles en regiones. Las entregas de los despachos se realizan de lunes a viernes, entre las 9:00 y las 22:00 horas. Estos plazos de entrega podrán ser modificados en el contexto de los eventos CyberDay y CyberMonday e informados como tal a los clientes. Para más detalles, referir a la información actualizada en la sección Despachos<b id="linkCambios"></b>
+                </li>
+                <li>6.	Despachos express: Las compras con confirmación de pago hechas entre las 00:00 y 14:00 horas de lunes a viernes, serán despachadas y entregadas durante el mismo día (excepto festivos). No se realizan despachos express a oficinas de Chilexpress. Válido sólo para las siguientes comunas de la Región Metropolitana: La Reina, Las Condes, Lo Barnechea, Ñuñoa, Peñalolén, Providencia, Santiago Centro y Vitacura. Las entregas de los despachos se realizan durante el mismo día de compra. Esta alternativa no es válida ni estará disponible en promociones que contemplen despacho gratis ni durante eventos CyberDay y CyberMonday.
+                Puedes ver en detalle las condiciones <b id="linkDespachos"></b>
+                </li>
+
+              </ul>
+              <br>
+              <br>
+              OCTAVO. Reglas para el Retiro en Tienda.
+              <br>
+              <br>
+              <ul>
+                <li>1.	Al realizar la compra, el usuario podrá seleccionar la tienda <b class="nickName"></b>  desde la cual desea retirar su pedido.
+                </li>
+                <li>2.	Las compras pagadas y confirmadas se podrán retirar una vez que el usuario haya recibido el mail de confirmación de retiro, lo que puede ocurrir a los 2 o 3 días hábiles contados desde la recepción de un primer correo, de confirmación de la compra. El cliente no podrá retirar su pedido previo a la recepción del correo mencionado. Estos plazos de entrega podrán ser modificados en el contexto de los eventos CyberDay y CyberMonday e informados como tal a los clientes. Para más detalles, referir a la información actualizada en la sección Despachos <b id="linkDespachos"></b>
+                </li>
+                <li>3.	El usuario tendrá un plazo de 30 días corridos para realizar el retiro de su compra en la tienda seleccionada. Vencido este plazo, la compra se anulará quedando sin efecto, el producto volverá a la bodega <b class="nickName"></b>  y se coordinará la devolución en dinero del precio pagado. Para estos efectos, Servicio al Cliente de <b class="nickName"></b>  se contactará con el comprador para obtener sus datos bancarios, siendo responsabilidad de este último otorgar información fidedigna para que la transferencia se realice con éxito. En caso de que el comprador no informe los datos bancarios, <b class="nickName"></b>  no incurrirá en responsabilidad por falta de restitución del precio. 
+                Puedes ver en detalle las condiciones <b id="linkDespachos"></b>
+                </li>
+              </ul>
+              <br><br>
+              NOVENO. Descuentos. <b class="nickName"></b>  podrá, de tiempo en tiempo, otorgar descuentos en forma de códigos que los Usuarios podrán descontar en su compra. <b class="nickName"></b>  determinará el monto máximo y las condiciones de los descuentos que el Usuario podrá utilizar en una compra y lo detallará en el Sitio. Los descuentos utilizados por los Usuarios no serán reintegrados en caso de devolución de los productos, por cualquier causa que esto ocurriera.<br>
+              Todas las ofertas y promociones contenidas en el Sitio permanecerán vigentes mientras exista disponibilidad de stock o no sean modificadas por <b class="nickName"></b>  e informadas en este sitio.
+              <br><br>
+              DECIMO. Garantías y postventa.El Usuario tendrá el derecho de poner término unilateral a una compra, en los términos establecidos en el artículo 3ºbis de la ley 19.496 que establece normas sobre protección de los derechos de los consumidores.
+              <br>
+              Para todos los efectos, el Usuario deberá guardar la boleta o comprobante de pago.
+              <br><br>
+              <ul>
+                <li>1.	Derecho de retracto: El usuario podrá devolver un producto adquirido en el Sitio dentro del plazo de 10 días contados desde su recepción, sin necesidad de invocar ninguna causa y siempre y cuando el producto se encuentre en perfecto estado con sus sellos originales intactos, para obtener devolución de su dinero. No podrá ejercerse el derecho de retracto cuando el bien, materia del contrato, se haya deteriorado por un hecho imputable al comprador. Asimismo, el usuario cuenta con 90 días desde la misma fecha para pedir cambio de producto, bajo las mismas condiciones.
+                Ver nuestras políticas <b id="linkPrivacidad"></b>
+                </li>
+                <li>2.	Cambio y devolución de productos: El Consumidor tiene derecho a exigir la devolución de su dinero o el cambio de un producto defectuoso en caso de que presentara fallas, y a sus garantías legales, en conformidad a la ley sobre protección de los derechos de los consumidores, durante 90 días (tres meses) tras la realización de la compra. Es requisito esencial para el ejercicio de este derecho, que el producto no se haya deteriorado por un hecho imputable o atribuible al usuario, lo que será verificado por <b class="nickName"></b> , en un plazo de revisión de 10 días hábiles.
+                Las instrucciones y especificaciones para el cambio y devoluciones se encuentran disponibles en la sección Cambios y Devoluciones. <b id="linkCambios"></b>
+                </li>
+              </ul>
+              <br><br>
+              DECIMO PRIMERO. Políticas de privacidad. La información que entreguen los usuarios será almacenada bajo altos estándares de seguridad, tratada en conformidad a la Ley con el propósito de concretar las transacciones en el Sitio y mejorar la labor de información y comercialización de los productos ofrecidos. En ningún caso podrán comunicarse o cederse a terceros no relacionados con <b class="nickName"></b> . El usuario podrá ejercer sus derechos de información, rectificación, cancelación y/o bloqueo de sus datos personales cuando lo estime pertinente, de conformidad a la Ley.
+              <br>
+              El usuario autoriza a <b class="nickName"></b>  para utilizar los datos proporcionados por éste para permitir la correcta operación del sitio, y especialmente, para comunicarlos únicamente a las empresas encargadas del despacho, así como también, a aquellas que procesen los pagos, todo ello, en los términos permitidos por la Ley 19.628, sobre protección de datos de carácter personal.
+              Asimismo, autoriza a <b class="nickName"></b>  para enviarle correos electrónicos y/o mensajes de texto con información relacionada con los servicios que presta a través de sitio, pudiendo, siempre revocar esta autorización.
+              <b class="nickName"></b>  cuenta con un área de Servicio al Cliente, por medio del cual recibirá y canalizará las consultas y reclamos de los Usuarios.  Para estos efectos, el Usuario deberá canalizar sus comunicaciones a la cuenta de correo electrónico <b id="emailEmpresa">[Email Empresa]</b>  o al teléfono <b id="telefonoEmpresa">[Teléfono Empresa]</b>  o bien, vía Whatsapp <b id="wspEmpresa">[Whatsapp Empresa]</b> .
+              <br><br>
+              DECIMO SEGUNDO. Seguridad. <b class="nickName"></b>  mantiene altos estándares de seguridad en la compra de productos basado en criptografía TLS 1.2 que asegura tanto la autenticidad del sitio como el cifrado de toda la información que entregan los usuarios. En caso de que se produzcan dificultades que impidan o retarden la compra de productos, <b class="nickName"></b>  adoptará las medidas necesarias, de acuerdo con los medios tecnológicos disponibles, a efectos de normalizar la continuidad y funcionamiento del sitio.
+              <br>
+              Ante cualquier irregularidad en las transacciones efectuadas por los Usuarios a través de este sitio, <b class="nickName"></b>  podrá contactar al usuario vía telefónica o por correo electrónico, a fin de corroborar sus datos e intentar evitar posibles fraudes. En caso de no poder establecer el contacto en un plazo de veinticuatro horas luego de efectuada la compra en este sitio, la orden de compra será rechazada.
+              <br><br>
+              DECIMO TERCERO. Vigencia.El presente acuerdo, mientras el Sitio se encuentre disponible, tendrá vigencia indefinida, salvo que <b class="nickName"></b>  ejerza su facultad discrecional de ponerle término, en cuyo caso los Usuarios serán debidamente notificados por cualquier medio fehaciente.
+              <br><br>
+              DECIMO QUINTO. Ley aplicable y domicilio.El presente Contrato se regirá por la ley chilena. Las partes fijan domicilio para todos los efectos legales en la comuna de Santiago de Chile, y se someten a la jurisdicción exclusiva de los tribunales ordinarios de justicia con competencia en dicha comuna.
+              <br><br>
+              DECIMO SEXTO. Firma electrónica.El presente instrumento, así como las compras se celebran mediante firma electrónica en conformidad con la Ley 19.799 sobre documentos electrónicos, firma electrónica y servicios de certificación de dicha firma.
+              </b>
+              </div>
+        </div>
+        <div class="">
+          <button class="btn btn-success mt-3 mb-3 ml-0" onclick="CopyToClipboard('terminosycondiciones')"><i class="fas fa-copy"></i> Copiar Términos y Condiciones</button>
+        </div>
+      <div id="politicadeprivacidad" class="tyc overflow-auto p-3 border border-primary" data-spy="scroll" data-target="#formulario" data-offset="0">
+        <div class="p-3">
+          <div class="text-center">
+            <h2>POLÍTICAS DE PRIVACIDAD DEL SITIO</h2>
+               <b id="urlEmpresa">[URL]</b>
+          </div>
+          <p>
+            <br><span><strong>CORREOS ELECTRÓNICOS</strong><br>
+            El envío de correos electrónicos se hará sólo con el consentimiento del Usuario y puede detenerse en cualquier momento.
+            Al ingresar o realizar una compra en nuestro sitio, puedes optar por recibir e-mails con información y promociones de <b class="nickName">[Nombre Tienda]</b> .
+            Puedes mandar un correo electrónico a <b id="emailEmpresa">[Email de Contacto]</b> para que te eliminemos de nuestra base de datos, o puedes desuscribirte en cualquiera de los correos que enviamos.</span>
+
+            <br><br><strong>USO DE COOKIES</strong><br>
+            Una cookie es información que envía un determinado sitio web y que es guardada en el navegador del usuario, permitiendo al sitio web conocer su actividad e interacción previa.
+            <b class="nickName">[Nombre Tienda]</b> utiliza estas cookies únicamente para entregar al usuario y cliente una experiencia más personalizada, mostrando en el sitio web y enviando directamente al cliente a través de su casilla de correo inscrita, productos y ofertas relacionadas con sus intereses. Puedes deshabilitar el almacenamiento de cookies en el explorador de internet que estés utilizando.
+
+            <br><br><strong>GOOGLE ANALYTICS</strong><br>
+            <b class="nickName">[Nombre Tienda]</b> utiliza Google Analytics para recopilar información estadística anónima asociada a las visitas de los usuarios de su sitio web.
+            El uso de la información a la que accedamos en Google Analytics con motivo de las visitas realizadas a nuestro sitio, será siempre confidencial y con el único objetivo de mejorar tu experiencia en <b id="urlEmpresa">[URL]</b>
+
+            <br><br><strong>MEDIDAS DE SEGURIDAD</strong><br>Para cumplir los objetivos de seguridad <b class="nickName">[Nombre Tienda]</b> cuenta con la tecnología SSL (Secure Sockets Layer) que asegura, tanto la autenticidad del sitio, como el cifrado de toda la información que nos entrega el usuario. Cada vez que el usuario ingresa en el sitio y entrega información de carácter personal, sin importar el lugar geográfico en donde se encuentre, a efectos de comprar un producto, el navegador por el cual ejecuta el acto se conecta al sitio a través del protocolo SSL que acredita que el usuario se encuentra efectivamente en el sitio y en nuestros servidores (lo cual se aprecia con la aparición del código HTTPS en la barra de direcciones del navegador). Esta tecnología permite que la información de carácter personal del usuario, como su nombre, dirección y datos de tarjetas bancarias, sean codificadas antes para que no pueda ser leída cuando viaja a través de Internet. Todos los certificados SSL se crean para un servidor particular, en un dominio específico y para una entidad comercial comprobada.
+          </p>
+
+        </div>
+      </div>
+      <button class="btn btn-success mt-3 mb-3 ml-0" onclick="CopyToClipboard('politicadeprivacidad')"><i class="fas fa-copy"></i> Copiar Políticas de Privacidad</button>
+
+      <div id="cambiosydevoluciones" class="tyc overflow-auto p-3 border border-primary" data-spy="scroll" data-target="#formulario" data-offset="0">
+        <div class="p-3">
+          <div class="text-center">
+            <h2>CAMBIOS Y DEVOLUCIONES</h2>
+               <b id="urlEmpresa">[URL]</b>
+          </div>
+
+      <p><strong>Cambios por insatisfacción:</strong><strong><br></strong>En <b class="nickName">[Nombre Tienda]</b> cuentas con 10 días seguidos desde el momento de tu compra para obtener devolución de dinero en el caso de que te hayas arrepentido de la compra.
+        <br> El producto debe estar cerrado, con los sellos y embalaje original en perfecto estado. <br>
+        Para hacerlo efectivo debes contactar a Servicio al Cliente a <b id="emailEmpresa">[Email de Contacto]</b> donde te indicarán los pasos a seguir.
+        <br> Ten en consideración que los costos de envío deben ser asumidos por el cliente, o puedes ir directamente a nuestras tiendas.</p>
+      <p><strong>Garantía de 3 meses:</strong>
+        <br> Si el producto presenta alguna falla de fabricación dentro de los 3 meses sucesivos a la compra de tu producto, puedes solicitar el cambio o la devolución de tu dinero.
+        <br> Para hacerlo efectivo debes contactar a Servicio al Cliente a <b id="emailEmpresa">[Email de Contacto]</b> donde te indicarán los pasos a seguir.
+        <br> Se hace efectiva la garantía cuando hayamos recibido el producto con falla, el cual puede ser enviado a nuestras oficinas sin costo, y posterior a la evaluación del servicio técnico para certificar que la falla es de fabricación (la revisión puede tardar hasta máximo 5 dias hábiles)</p>
+      <p><u>Consideraciones Generales:</u></p>
+      <ul>
+      <li>El producto debe ser cambiado o devuelto sin uso, con todos sus embalajes originales y en perfectas condiciones.</li>
+      <li>El cambio o devolución de un producto aplica para fallas atribuibles a la fabricación del producto y no a la mala manipulación.</li>
+      <li>Si tu pedido retorna a nuestra bodega <u>porque cumplió el plazo en la sucursal Chilexpress o no había nadie en el domicilio para recibir</u>, es el cliente quien debe asumir el costo del envío.</li>
+      </ul>
+      <p><strong>NO OLVIDES&nbsp;</strong><strong>SIEMPRE GUARDAR TU BOLETA O COMPROBANTE DE PAGO. ES LA ÚNICA MANERA DE HACER EFECTIVO CUALQUIER CAMBIO O DEVOLUCIÓN.</strong></p>
+    </div>
+  </div>
+  <button class="btn btn-success mt-3 mb-3 ml-0" onclick="CopyToClipboard('cambiosydevoluciones')"><i class="fas fa-copy"></i> Copiar Cambios y Devoluciones</button>
+
+
+
+</div>
+
+
+        <!-- JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script defer src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script src="https://kit.fontawesome.com/488fbf0d02.js" crossorigin="anonymous"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                //Inputs
+                const urlEmpresa_input = document.querySelector('#url');
+                const nombreEmpresa_input = document.querySelector('#nombreempresa');
+                const rutEmpresa_input = document.querySelector('#rut');
+                const nickName_input = document.querySelector('#nickname');
+                const emailEmpresa_input = document.querySelector('#email');
+                const telefonoEmpresa_input = document.querySelector('#telefono');
+                const wspEmpresa_input = document.querySelector('#whatsapp');
+                const linkPrivacidad_input = document.querySelector('#priv');
+                const linkDespachos_input = document.querySelector('#envios');
+                const linkCambios_input = document.querySelector('#cambios');
+                //Text Fields
+                const urlEmpresa_txt_field = document.querySelectorAll('#urlEmpresa');
+                const nombreEmpresa_txt_field = document.querySelector('#nombreEmpresa');
+                const rutEmpresa_txt_field = document.querySelector('#rutEmpresa');
+                const nickName_txt_field = document.querySelectorAll('.nickName');
+                const emailEmpresa_txt_field = document.querySelectorAll('#emailEmpresa');
+                const telefonoEmpresa_txt_field = document.querySelector('#telefonoEmpresa');
+                const wspEmpresa_txt_field = document.querySelector('#wspEmpresa');
+                const linkPrivacidad_txt_field = document.querySelectorAll('#linkPrivacidad');
+                const linkDespachos_txt_field = document.querySelectorAll('#linkDespachos');
+                const linkCambios_txt_field = document.querySelectorAll('#linkCambios');
+                //Counter
+                var lenURL = urlEmpresa_txt_field.length;
+                document.querySelector('#countURL').innerHTML = lenURL + ' Usos';
+                var lenNick = nickName_txt_field.length;
+                document.querySelector('#countNick').innerHTML = lenNick + ' Usos';
+                var lenEmail = emailEmpresa_txt_field.length;
+                document.querySelector('#countEmail').innerHTML = lenEmail + ' Usos';
+                var lenPriv = linkPrivacidad_txt_field.length;
+                document.querySelector('#countPriv').innerHTML = lenPriv + ' Usos';
+                var lenEnvios = linkDespachos_txt_field.length;
+                document.querySelector('#countEnvios').innerHTML = lenEnvios + ' Usos';
+                var lenCambios = linkCambios_txt_field.length;
+                document.querySelector('#countCambios').innerHTML = lenCambios + ' Usos';
+
+
+                //Blink button
+                const blink = '<b class="blink text-primary">|</b>';
+                //Eventos
+                  nickName_input.addEventListener('keyup', function(e) {
+                    for (var i = 0; i < nickName_txt_field.length; i++) {
+                      nickName_txt_field[i].innerHTML = nickName_input.value + blink;
+                      nickName_txt_field[0].scrollIntoView();
+                    }
+                  });
+                  nickName_input.addEventListener('focusout', function(e) {
+                    for (var i = 0; i < nickName_txt_field.length; i++) {
+                      nickName_txt_field[i].innerHTML = nickName_input.value;
+                    }
+                  });
+                  nickName_input.addEventListener('click', function(e) {
+                    for (var i = 0; i < nickName_txt_field.length; i++) {
+                      nickName_txt_field[i].innerHTML = blink;
+                      nickName_txt_field[0].scrollIntoView();
+                    }
+                  });
+
+                urlEmpresa_input.addEventListener('keyup', function(e) {
+                  for (var i = 0; i < urlEmpresa_txt_field.length; i++) {
+                    urlEmpresa_txt_field[i].innerHTML = urlEmpresa_input.value + blink;
+                    urlEmpresa_txt_field[0].scrollIntoView();
+                  }
+                });
+                urlEmpresa_input.addEventListener('focusout', function(e) {
+                  for (var i = 0; i < urlEmpresa_txt_field.length; i++) {
+                    urlEmpresa_txt_field[i].innerHTML = urlEmpresa_input.value;
+                  }
+                });
+                urlEmpresa_input.addEventListener('click', function(e) {
+                  for (var i = 0; i < urlEmpresa_txt_field.length; i++) {
+                    urlEmpresa_txt_field[i].innerHTML = blink;
+                    urlEmpresa_txt_field[0].scrollIntoView();
+                  }
+                });
+                nombreEmpresa_input.addEventListener('keyup', function(e) {
+                    nombreEmpresa_txt_field.innerHTML = nombreEmpresa_input.value + blink;
+                    nombreEmpresa_txt_field.scrollIntoView();
+
+                });
+                nombreEmpresa_input.addEventListener('focusout', function(e) {
+                    nombreEmpresa_txt_field.innerHTML = nombreEmpresa_input.value;
+                });
+                nombreEmpresa_input.addEventListener('click', function(e) {
+                    nombreEmpresa_txt_field.innerHTML = blink;
+                    nombreEmpresa_txt_field.scrollIntoView();
+
+                });
+                rutEmpresa_input.addEventListener('keyup', function(e) {
+                    rutEmpresa_txt_field.innerHTML = rutEmpresa_input.value + blink;
+                    rutEmpresa_txt_field.scrollIntoView();
+
+                });
+                rutEmpresa_input.addEventListener('focusout', function(e) {
+                    rutEmpresa_txt_field.innerHTML = rutEmpresa_input.value;
+                });
+                rutEmpresa_input.addEventListener('click', function(e) {
+                    rutEmpresa_txt_field.innerHTML = blink;
+                    rutEmpresa_txt_field.scrollIntoView();
+
+                });
+
+
+
+                emailEmpresa_input.addEventListener('keyup', function(e) {
+                  for (var i = 0; i < emailEmpresa_txt_field.length; i++) {
+                    emailEmpresa_txt_field[i].innerHTML = emailEmpresa_input.value + blink;
+                    emailEmpresa_txt_field[0].scrollIntoView();
+                  }
+                });
+                emailEmpresa_input.addEventListener('focusout', function(e) {
+                  for (var i = 0; i < emailEmpresa_txt_field.length; i++) {
+                    emailEmpresa_txt_field[i].innerHTML = emailEmpresa_input.value;
+                  }
+                });
+                emailEmpresa_input.addEventListener('click', function(e) {
+                  for (var i = 0; i < emailEmpresa_txt_field.length; i++) {
+                    emailEmpresa_txt_field[i].innerHTML = blink;
+                    emailEmpresa_txt_field[0].scrollIntoView();
+                  }
+                });
+                telefonoEmpresa_input.addEventListener('keyup', function(e) {
+                    telefonoEmpresa_txt_field.innerHTML = telefonoEmpresa_input.value + blink;
+                    telefonoEmpresa_txt_field.scrollIntoView();
+                });
+                telefonoEmpresa_input.addEventListener('focusout', function(e) {
+                    telefonoEmpresa_txt_field.innerHTML = telefonoEmpresa_input.value;
+                });
+                telefonoEmpresa_input.addEventListener('click', function(e) {
+                    telefonoEmpresa_txt_field.innerHTML = blink;
+                    telefonoEmpresa_txt_field.scrollIntoView();
+                });
+                wspEmpresa_input.addEventListener('keyup', function(e) {
+                    wspEmpresa_txt_field.innerHTML = wspEmpresa_input.value + blink;
+                    wspEmpresa_txt_field.scrollIntoView();
+                });
+                wspEmpresa_input.addEventListener('focusout', function(e) {
+                    wspEmpresa_txt_field.innerHTML = wspEmpresa_input.value;
+                });
+                wspEmpresa_input.addEventListener('click', function(e) {
+                    wspEmpresa_txt_field.innerHTML = blink;
+                    wspEmpresa_txt_field.scrollIntoView();
+                });
+                linkPrivacidad_input.addEventListener('keyup', function(e) {
+                  for (var i = 0; i < linkPrivacidad_txt_field.length; i++) {
+
+                    linkPrivacidad_txt_field[i].innerHTML = '<a href="' + linkPrivacidad_input.value + '">Política de Privacidad</a>' + blink;
+                    linkPrivacidad_txt_field[0].scrollIntoView();
+                }});
+                linkPrivacidad_input.addEventListener('focusout', function(e) {
+                  for (var i = 0; i < linkPrivacidad_txt_field.length; i++) {
+                    linkPrivacidad_txt_field[i].innerHTML = '<a href="' + linkPrivacidad_input.value + '">Política de Privacidad</a>';
+                }});
+
+                linkPrivacidad_input.addEventListener('click', function(e) {
+                  for (var i = 0; i < linkPrivacidad_txt_field.length; i++) {
+
+                    linkPrivacidad_txt_field[i].innerHTML = blink;
+                    linkPrivacidad_txt_field[0].scrollIntoView();
+
+                }});
+                linkCambios_input.addEventListener('keyup', function(e) {
+                  for (var i = 0; i < linkCambios_txt_field.length; i++) {
+
+                    linkCambios_txt_field[i].innerHTML = '<a href="' + linkCambios_input.value + '">Cambios</a>' + blink;
+                    linkCambios_txt_field[0].scrollIntoView();
+                }});
+                linkCambios_input.addEventListener('focusout', function(e) {
+                  for (var i = 0; i < linkCambios_txt_field.length; i++) {
+
+                    linkCambios_txt_field[i].innerHTML = '<a href="' + linkCambios_input.value + '">Cambios</a>';
+                }});
+                linkCambios_input.addEventListener('click', function(e) {
+                  for (var i = 0; i < linkCambios_txt_field.length; i++) {
+
+                    linkCambios_txt_field[i].innerHTML = blink;
+                    linkCambios_txt_field[0].scrollIntoView();
+                }});
+                linkDespachos_input.addEventListener('keyup', function(e) {
+                  for (var i = 0; i < linkDespachos_txt_field.length; i++) {
+
+                    linkDespachos_txt_field[i].innerHTML = '<a href="' + linkDespachos_input.value + '">Despachos</a>' + blink;
+                    linkDespachos_txt_field[0].scrollIntoView();
+                }});
+                linkDespachos_input.addEventListener('focusout', function(e) {
+                  for (var i = 0; i < linkDespachos_txt_field.length; i++) {
+
+                    linkDespachos_txt_field[i].innerHTML = '<a href="' + linkDespachos_input.value + '">Despachos</a>';
+                }});
+                linkDespachos_input.addEventListener('click', function(e) {
+                  for (var i = 0; i < linkDespachos_txt_field.length; i++) {
+
+                    linkDespachos_txt_field[i].innerHTML = blink;
+                    linkDespachos_txt_field[0].scrollIntoView();
+                }});
+            });
+            $('body').scrollspy({ target: '#formulario' });
+            //Funcion Copiar
+
+            function CopyToClipboard(containerid) {
+
+              var aux = document.createElement("div");
+              aux.setAttribute("contentEditable", true);
+              aux.innerHTML = document.getElementById(containerid).innerHTML;
+              aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)");
+              document.body.appendChild(aux);
+              aux.focus();
+              document.execCommand("copy");
+              document.body.removeChild(aux);
+              alertify.success('Texto Copiado en tu Portapapeles');
+
+            }
+        </script>
+
+    </body>
+</html>
